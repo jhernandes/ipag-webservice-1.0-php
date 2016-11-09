@@ -10,7 +10,7 @@ class Order
     const OPERATION_PAYMENT = 'Pagamento';
     const OPERATION_CONSULT = 'Consulta';
     const OPERATION_CAPTURE = 'Captura';
-    const OPERATION_VOID = 'Cancela';
+    const OPERATION_CANCEL = 'Cancela';
 
     /**
      * @var string
@@ -43,22 +43,22 @@ class Order
     private $installments;
 
     /**
+     * @param string $operation
+     * @param string $callbackUrl
      * @param string $orderId
      * @param double $amount
      * @param int $installments
-     * @param string $operation
-     * @param string $callbackUrl
      * @param string $returnType
      */
     function __construct(
+        $operation,
+        $callbackUrl = Order::RETURN_XML,
         $orderId,
         $amount = null,
         $installments = null,
-        $operation = null,
-        $callbackUrl = Order::RETURN_XML,
         $returnType = Order::RETURN_XML
     ) {
-        $this->setOrderId((string)$orderId);
+        is_null($orderId)?:$this->setOrderId((string)$orderId);
         is_null($amount)?:$this->setAmount($amount);
         is_null($installments)?:$this->setInstallments((int)$installments);
         $this->setOperation((string)$operation);
@@ -156,7 +156,7 @@ class Order
             Order::OPERATION_PAYMENT,
             Order::OPERATION_CONSULT,
             Order::OPERATION_CAPTURE,
-            Order::OPERATION_VOID,
+            Order::OPERATION_CANCEL,
             null,
         );
 

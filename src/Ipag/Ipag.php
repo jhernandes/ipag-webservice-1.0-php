@@ -73,23 +73,27 @@ class Ipag
     }
 
     /**
+     *
+     * @param  string $operation
+     * @param  string $callbackUrl
      * @param  string $orderId
      * @param  double $amount
      * @param  int $installments
-     * @param  string $operation
-     * @param  string $callbackUrl
      * @param  string $returnType
      * @return Order
      */
     public function order(
-        $orderId,
-        $amount,
-        $installments,
         $operation,
         $callbackUrl = Order::RETURN_XML,
+        $orderId = null,
+        $amount = null,
+        $installments = null,
         $returnType = Order::RETURN_XML
     ) {
-        return new Order($orderId, $amount, $installments, $operation, $callbackUrl, $returnType);
+        return new Order(
+            $operation, $callbackUrl, $orderId,
+            (double)$amount, $installments, $returnType
+        );
     }
 
     /**

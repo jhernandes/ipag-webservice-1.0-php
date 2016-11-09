@@ -335,8 +335,19 @@ class Response
         return $this->error != null;
     }
 
+    /**
+     * @return boolean
+     */
     public function isApproved()
     {
-        return ($this->getPaymentStatus() == '5' || $this->getPaymentStatus() == '8');
+        return ($this->getPaymentStatus() == '5');
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isCaptured()
+    {
+        return ($this->getPaymentStatus() == '8');
     }
 }

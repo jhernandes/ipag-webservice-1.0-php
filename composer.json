@@ -1,0 +1,19 @@
+{
+    "name": "jhernandes/ipag-webservice-1.0-php",
+    "license": "MIT",
+    "type": "library",
+    "description": "Pacote de integração para o iPag webservice 1.0 em PHP",
+    "keywords": ["ipag","gateway","integracao"],
+    "homepage": "https://github.com/jhernandes/ipag-webservice-1.0-php",
+    "version": "1.0.0",
+    "require": {
+        "php": ">=5.3.0",
+        "libcurl": "@stable",
+        "libxml": "@stable"
+    },
+    "autoload": {
+    	"psr-4": {
+            "Ipag\\": "src/"
+        }
+    }
+}
