@@ -24,9 +24,9 @@ class Ipag
     /**
      * @var string
      */
-    const TEST = 'http://core.ipag.dev';
+    const TEST = 'http://sandbox.ipag.com.br';
 
-    const PAYMENT = '/pagamento.php';
+    const PAYMENT = '/pagamento';
     const CONSULT = '/consulta';
     const CAPTURE = '/captura';
     const CANCEL = '/cancela';
