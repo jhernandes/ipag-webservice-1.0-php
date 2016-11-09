@@ -13,7 +13,6 @@ class IpagResponse
         if (!$doc) {
             echo $doc;
             exit;
-            // throw new IpagException('Não foi possível concluir a operação.', '10000');
         }
 
         $response = new Response();
