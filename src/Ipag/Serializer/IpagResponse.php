@@ -8,11 +8,12 @@ class IpagResponse
     public function unserialize($message)
     {
         libxml_use_internal_errors(true);
-        $doc = simplexml_load_string($message);
+        $doc = simplexml_load_string($message,'SimpleXMLElement', LIBXML_NOCDATA);
 
-        if (!$doc) {
-            echo $doc;
+        if ($doc === false) {
+            echo $message;
             exit;
+            // throw new IpagException('Não foi possível concluir a operação.', '10000');
         }
 
         $response = new Response();

@@ -10,7 +10,7 @@ final class CurlOnlyPostHttpClient implements OnlyPostHttpClientInterface
     /**
      * {@inheritDoc}
      */
-    public function __invoke($url, array $headers = [], array $fields = [])
+    public function __invoke($url, array $headers = array(), array $fields = array())
     {
         $headers = array_map(
             function ($name, $value) {
