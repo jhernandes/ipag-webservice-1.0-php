@@ -5,7 +5,7 @@
     "description": "Pacote de integração para o iPag webservice 1.0 em PHP",
     "keywords": ["ipag","gateway","integracao"],
     "homepage": "https://github.com/jhernandes/ipag-webservice-1.0-php",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "authors": [
         {
             "name": "João Hernandes",

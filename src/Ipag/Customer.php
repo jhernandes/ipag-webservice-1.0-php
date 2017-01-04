@@ -32,6 +32,8 @@ class Customer
      * @param string $email
      * @param null|string $identity
      * @param null|string $phone
+     *
+     * @return self
      */
     function __construct($name, $email, $identity = null, $phone = null)
     {
@@ -39,6 +41,8 @@ class Customer
         $this->setEmail((string)$email);
         is_null($identity)?:$this->setIdentity((string)$identity);
         is_null($phone)?:$this->setPhone((string)$phone);
+
+        return $this;
     }
 
     /**
@@ -98,6 +102,8 @@ class Customer
      *
      * @throws \UnexpectedValueException se o nome do cliente não for
      * do tipo `string` ou exceder 30 caracteres
+     *
+     * @return self
      */
     public function setName($name)
     {
@@ -107,16 +113,22 @@ class Customer
             );
         }
         $this->name = $name;
+
+        return $this;
     }
 
     /**
      * Set the value of Identity
      *
      * @param string identity
+     *
+     * @return self
      */
     public function setIdentity($identity)
     {
         $this->identity = $identity;
+
+        return $this;
     }
 
     /**
@@ -125,6 +137,8 @@ class Customer
      * @param string email
      * @throws \UnexpectedValueException se o email não for válido ou string ou não conter
      * de 1 a 100 caracteres
+     *
+     * @return self
      */
     public function setEmail($email)
     {
@@ -136,6 +150,8 @@ class Customer
             );
         }
         $this->email = $email;
+
+        return $this;
     }
 
     /**
@@ -145,6 +161,8 @@ class Customer
      *
      * @throws \UnexpectedValueException se o número do telefone/celular não é
      * válido ou não tem entre 8 e 15 caracteres
+     *
+     * @return self
      */
     public function setPhone($phone)
     {
@@ -154,15 +172,21 @@ class Customer
             );
         }
         $this->phone = $phone;
+
+        return $this;
     }
 
     /**
      * Set the value of Address
      *
      * @param Address address
+     *
+     * @return self
      */
     public function setAddress(Address $address)
     {
         $this->address = $address;
+
+        return $this;
     }
 }

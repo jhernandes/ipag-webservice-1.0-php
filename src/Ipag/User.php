@@ -9,10 +9,14 @@ class User
 
     /**
      * @param string $identification
+     *
+     * @return self
      */
     function __construct($identification)
     {
         $this->setIdentification($identification);
+
+        return $this;
     }
 
     /**
@@ -29,9 +33,13 @@ class User
      * Set the value of Identification
      *
      * @param string $identification
+     *
+     * @return self
      */
     public function setIdentification($identification)
     {
         $this->identification = $identification;
+
+        return $this;
     }
 }

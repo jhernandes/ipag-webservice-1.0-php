@@ -31,10 +31,10 @@ class PaymentSerializer
             if (!is_null($card->getToken())) {
                 $message['token_cartao'] =   urlencode($card->getToken());
             } else {
-                $message['num_cartao'] =     urlencode($card->getNumber());
-                $message['nome_cartao'] =    urlencode($card->getHolder());
-                $message['mes_cartao'] =     urlencode($card->getExpireMonth());
-                $message['ano_cartao'] =     urlencode($card->getExpireYear());
+                $message['num_cartao']  = urlencode($card->getNumber());
+                $message['nome_cartao'] = urlencode($card->getHolder());
+                $message['mes_cartao']  = urlencode($card->getExpireMonth());
+                $message['ano_cartao']  = urlencode($card->getExpireYear());
                 if (!is_null($card->getCvv())) {
                     $message['cvv_cartao'] = urlencode($card->getCvv());
                 }
@@ -44,38 +44,38 @@ class PaymentSerializer
         //Customer
         if (!is_null($tx->getCustomer())) {
             $customer = $tx->getCustomer();
-            $message['nome'] =  urlencode($customer->getName());
+            $message['nome']  = urlencode($customer->getName());
             $message['email'] = urlencode($customer->getEmail());
-            $message['doc'] =   urlencode($customer->getIdentity());
-            $message['fone'] =  urlencode($customer->getPhone());
+            $message['doc']   = urlencode($customer->getIdentity());
+            $message['fone']  = urlencode($customer->getPhone());
         }
 
         //Customer Address
         if (!is_null($tx->getCustomer()->getAddress())) {
             $address = $tx->getCustomer()->getAddress();
-            $message['endereco'] =        urlencode($address->getStreet());
+            $message['endereco']        = urlencode($address->getStreet());
             $message['numero_endereco'] = urlencode($address->getNumber());
-            $message['complemento'] =     urlencode($address->getComplement());
-            $message['bairro'] =          urlencode($address->getNeighborhood());
-            $message['cidade'] =          urlencode($address->getCity());
-            $message['estado'] =          urlencode($address->getState());
-            $message['pais'] =            urlencode($address->getCountry());
-            $message['cep'] =             urlencode($address->getZipCode());
-
+            $message['complemento']     = urlencode($address->getComplement());
+            $message['bairro']          = urlencode($address->getNeighborhood());
+            $message['cidade']          = urlencode($address->getCity());
+            $message['estado']          = urlencode($address->getState());
+            $message['pais']            = urlencode($address->getCountry());
+            $message['cep']             = urlencode($address->getZipCode());
         }
 
-        //Recorrência
-        if (!is_null($tx->getPayment()->getFrequency())) {
-            $message['frequencia'] = $tx->getPayment()->getFrequency();
-        }
-        if (!is_null($tx->getPayment()->getInterval())) {
-            $message['intervalo'] = $tx->getPayment()->getInterval();
-        }
-        if (!is_null($tx->getPayment()->getStart())) {
-            $message['inicio'] = $tx->getPayment()->getStart();
-        }
-        if (!is_null($tx->getPayment()->getCycle())) {
-            $message['ciclos'] = $tx->getPayment()->getCycle();
+        //Subscription
+        if (!is_null($tx->getSubscription())) {
+            $subscription = $tx->getSubscription();
+
+            $message['frequencia']       = urlencode($subscription->getFrequency());
+            $message['intervalo']        = urlencode($subscription->getInterval());
+            $message['inicio']           = urlencode($subscription->getStart());
+            $message['ciclos']           = urlencode($subscription->getCycle());
+            $message['valor_rec']        = urlencode($subscription->getAmount());
+            $message['trial']            = urlencode($subscription->getTrial();
+            $message['trial_ciclos']     = urlencode($subscription->getTrialCycle();
+            $message['trial_frequencia'] = urlencode($subscription->getTrialFrequency();
+            $message['trial_valor']      = urlencode($subscription->getTrialAmount();
         }
         return $message;
     }

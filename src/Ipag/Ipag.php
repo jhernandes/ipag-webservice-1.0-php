@@ -6,6 +6,7 @@ use Ipag\Customer;
 use Ipag\Order;
 use Ipag\Address;
 use Ipag\Card;
+use Ipag\Subscription;
 use Ipag\Serializer\PaymentSerializer;
 use Ipag\Serializer\ConsultSerializer;
 use Ipag\Serializer\CancelSerializer;
@@ -50,6 +51,8 @@ class Ipag
      * @param string                      $identification
      * @param string                      $endpoint
      * @param OnlyPostHttpClientInterface $onlyPostClient
+     *
+     * @return self
      */
     function __construct(
         $identification,
@@ -59,12 +62,15 @@ class Ipag
         $this->user           = new User($identification);
         $this->endpoint       = $endpoint;
         $this->onlyPostClient = $onlyPostClient ?: new CurlOnlyPostHttpClient();
+
+        return $this;
     }
 
     /**
      * @param  Order   $order
      * @param  null|Payment $payment
      * @param  null|Customer  $customer
+     *
      * @return Transaction
      */
     public function transaction(Order $order, Payment $payment = null, Customer $customer = null)
@@ -80,6 +86,7 @@ class Ipag
      * @param  double $amount
      * @param  int $installments
      * @param  string $returnType
+     *
      * @return Order
      */
     public function order(
@@ -99,6 +106,7 @@ class Ipag
     /**
      * @param  string $method
      * @param  null|Card $card
+     *
      * @return Payment
      */
     public function payment($method, $card = null)
@@ -111,6 +119,7 @@ class Ipag
      * @param  string $email
      * @param  string $identity
      * @param  string $phone
+     *
      * @return Customer
      */
     public function customer($name, $email, $identity = null, $phone = null)
@@ -126,6 +135,8 @@ class Ipag
      * @param string $city
      * @param string $state
      * @param string $country
+     *
+     * @return Address
      */
     public function address(
         $street,
@@ -149,6 +160,8 @@ class Ipag
      * @param null|string $expireMonth
      * @param null|string $expireYear
      * @param int         $cvv
+     *
+     * @return Card
      */
     public function card(
         $tokenOrNumber,
@@ -161,6 +174,19 @@ class Ipag
             return new Card($tokenOrNumber);
         }
         return new Card($tokenOrNumber, $holder, $expireMonth, $expireYear, $cvv);
+    }
+
+    /**
+     * @param int $interval
+     * @param int $frequency
+     * @param string $start
+     * @param intnull $cycle
+     *
+     * @return Subscription
+     */
+    public function subscription($interval, $frequency, $start, $cycle = null)
+    {
+        return new Subscription($interval, $frequency, $start, $cycle);
     }
 
     /**
