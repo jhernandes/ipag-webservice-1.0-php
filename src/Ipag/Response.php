@@ -81,10 +81,14 @@ class Response
      * Set the value of Tid
      *
      * @param string tid
+     *
+     * @return self
      */
     public function setTid($tid)
     {
         $this->tid = $tid;
+
+        return $this;
     }
 
     /**
@@ -101,10 +105,14 @@ class Response
      * Set the value of Amount
      *
      * @param string amount
+     *
+     * @return self
      */
     public function setAmount($amount)
     {
         $this->amount = $amount;
+
+        return $this;
     }
 
     /**
@@ -121,10 +129,14 @@ class Response
      * Set the value of Order Id
      *
      * @param string orderId
+     *
+     * @return self
      */
     public function setOrderId($orderId)
     {
         $this->orderId = $orderId;
+
+        return $this;
     }
 
     /**
@@ -141,10 +153,14 @@ class Response
      * Set the value of Payment Status
      *
      * @param string paymentStatus
+     *
+     * @return self
      */
     public function setPaymentStatus($paymentStatus)
     {
         $this->paymentStatus = $paymentStatus;
+
+        return $this;
     }
 
     /**
@@ -161,10 +177,14 @@ class Response
      * Set the value of Transaction Message
      *
      * @param string transactionMessage
+     *
+     * @return self
      */
     public function setTransactionMessage($transactionMessage)
     {
         $this->transactionMessage = $transactionMessage;
+
+        return $this;
     }
 
     /**
@@ -181,10 +201,14 @@ class Response
      * Set the value of Method
      *
      * @param string method
+     *
+     * @return self
      */
     public function setMethod($method)
     {
         $this->method = $method;
+
+        return $this;
     }
 
     /**
@@ -201,10 +225,14 @@ class Response
      * Set the value of Operator
      *
      * @param string operator
+     *
+     * @return self
      */
     public function setOperator($operator)
     {
         $this->operator = $operator;
+
+        return $this;
     }
 
     /**
@@ -221,10 +249,14 @@ class Response
      * Set the value of Operator Message
      *
      * @param string operatorMessage
+     *
+     * @return self
      */
     public function setOperatorMessage($operatorMessage)
     {
         $this->operatorMessage = $operatorMessage;
+
+        return $this;
     }
 
     /**
@@ -241,10 +273,14 @@ class Response
      * Set the value of Ipag Id
      *
      * @param string ipagId
+     *
+     * @return self
      */
     public function setIpagId($ipagId)
     {
         $this->ipagId = $ipagId;
+
+        return $this;
     }
 
     /**
@@ -261,10 +297,14 @@ class Response
      * Set the value of Auth Id
      *
      * @param string authId
+     *
+     * @return self
      */
     public function setAuthId($authId)
     {
         $this->authId = $authId;
+
+        return $this;
     }
 
     /**
@@ -281,10 +321,14 @@ class Response
      * Set the value of Url Authentication
      *
      * @param string urlAuthentication
+     *
+     * @return self
      */
     public function setUrlAuthentication($urlAuthentication)
     {
         $this->urlAuthentication = $urlAuthentication;
+
+        return $this;
     }
 
     /**
@@ -301,10 +345,14 @@ class Response
      * Set the value of Error
      *
      * @param string error
+     *
+     * @return self
      */
     public function setError($error)
     {
         $this->error = $error;
+
+        return $this;
     }
 
     /**
@@ -321,10 +369,14 @@ class Response
      * Set the value of Error Message
      *
      * @param string errorMessage
+     *
+     * @return self
      */
     public function setErrorMessage($errorMessage)
     {
         $this->errorMessage = $errorMessage;
+
+        return $this;
     }
 
     /**

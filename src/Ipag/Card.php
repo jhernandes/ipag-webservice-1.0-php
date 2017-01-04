@@ -38,6 +38,8 @@ class Card
      * @param null|string $expireMonth
      * @param null|string $expireYear
      * @param int         $cvv
+     *
+     * @return self
      */
     public function __construct(
         $tokenOrNumber,
@@ -56,6 +58,8 @@ class Card
         $this->setExpireMonth($expireMonth);
         $this->setExpireYear($expireYear);
         is_null($cvv)?:$this->setCvv($cvv);
+
+        return $this;
     }
 
     /**
@@ -124,6 +128,8 @@ class Card
     * @param string number
     * @throws \UnexpectedValueException se o número do cartão não for numérico
     * ou exceder 19 dígitos
+    *
+    * @return self
     */
     public function setNumber($number)
     {
@@ -133,6 +139,8 @@ class Card
             );
         }
         $this->number = $number;
+
+        return $this;
     }
 
     /**
@@ -141,6 +149,8 @@ class Card
     * @param string holder
     * @throws \UnexpectedValueException se o nome do portador do cartão não for
     * do tipo `string` ou exceder 50 caracteres
+    *
+    * @return self
     */
     public function setHolder($holder)
     {
@@ -150,6 +160,8 @@ class Card
             );
         }
         $this->holder = $holder;
+
+        return $this;
     }
 
     /**
@@ -158,6 +170,8 @@ class Card
     * @param string expireMonth
     * @throws \UnexpectedValueException se o mês de expiração não for numérico
     * ou não estiver entre 1 e 12
+    *
+    * @return self
     */
     public function setExpireMonth($expireMonth)
     {
@@ -167,6 +181,8 @@ class Card
             );
         }
         $this->expireMonth = $expireMonth;
+
+        return $this;
     }
 
     /**
@@ -175,6 +191,8 @@ class Card
     * @param string expireYear
     * @throws \UnexpectedValueException se o ano de expiração não for numérico
     * ou não conter 2 dígitos
+    *
+    * @return self
     */
     public function setExpireYear($expireYear)
     {
@@ -184,6 +202,8 @@ class Card
             );
         }
         $this->expireYear = $expireYear;
+
+        return $this;
     }
 
     /**
@@ -192,6 +212,8 @@ class Card
     * @param string cvv
     * @throws \UnexpectedValueException se o CVV não for numérico ou não conter
     * 3 ou 4 dígitos
+    *
+    * @return self
     */
     public function setCvv($cvv)
     {
@@ -201,6 +223,8 @@ class Card
             );
         }
         $this->cvv = $cvv;
+
+        return $this;
     }
 
     /**
@@ -209,6 +233,8 @@ class Card
     * @param string token
     * @throws \UnexpectedValueException se o token não tiver 36 caracteres ou não
     * for do tipo `string`
+    *
+    * @return self
     */
     public function setToken($token)
     {
@@ -218,6 +244,8 @@ class Card
             );
         }
         $this->token = $token;
+
+        return $this;
     }
 
 }

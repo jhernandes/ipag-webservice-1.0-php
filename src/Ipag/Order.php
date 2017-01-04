@@ -49,6 +49,8 @@ class Order
      * @param double $amount
      * @param int $installments
      * @param string $returnType
+     *
+     * @return self
      */
     function __construct(
         $operation,
@@ -64,6 +66,8 @@ class Order
         $this->setOperation((string)$operation);
         $this->setCallbackUrl((string)$callbackUrl);
         $this->setReturnType((string)$returnType);
+
+        return $this;
     }
 
     /**
@@ -132,6 +136,8 @@ class Order
      * @param string $orderId
      * @throws \UnexpectedValueException se o nome do cliente não for
      * do tipo `string` ou exceder 20 caracteres
+     *
+     * @return self
      */
     public function setOrderId($orderId)
     {
@@ -141,6 +147,8 @@ class Order
             );
         }
         $this->orderId = $orderId;
+
+        return $this;
     }
 
     /**
@@ -149,6 +157,8 @@ class Order
      * @param string $operation
      * @throws \UnexpectedValueException se a operação não for Pagamento, Consulta,
      * Captura ou Cancela
+     *
+     * @return self
      */
     public function setOperation($operation)
     {
@@ -166,16 +176,22 @@ class Order
             );
         }
         $this->operation = $operation;
+
+        return $this;
     }
 
     /**
      * Set the value of Callback Url
      *
      * @param string $callbackUrl
+     *
+     * @return self
      */
     public function setCallbackUrl($callbackUrl)
     {
         $this->callbackUrl = $callbackUrl;
+
+        return $this;
     }
 
     /**
@@ -183,6 +199,8 @@ class Order
      *
      * @param string $returnType
      * @throws \UnexpectedValueException se o retorno tipo não for xml ou null
+     *
+     * @return self
      */
     public function setReturnType($returnType)
     {
@@ -197,12 +215,16 @@ class Order
             );
         }
         $this->returnType = $returnType;
+
+        return $this;
     }
 
     /**
      * Set the value of Amount
      *
      * @param double $amount
+     *
+     * @return self
      */
     public function setAmount($amount)
     {
@@ -210,8 +232,10 @@ class Order
               throw new \UnexpectedValueException(
                   'O Valor do Pedido deve ser do tipo double'
               );
-          }
+        }
         $this->amount = $amount;
+
+        return $this;
     }
 
     /**
@@ -220,6 +244,8 @@ class Order
      * @param int $installments
      *
      * @throws Se a parcela não for inteiro ou ter mais que 2 caracteres
+     *
+     * @return self
      */
     public function setInstallments($installments)
     {
@@ -229,5 +255,7 @@ class Order
             );
         }
         $this->installments = $installments;
+
+        return $this;
     }
 }

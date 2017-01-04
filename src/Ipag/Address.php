@@ -50,6 +50,8 @@ class Address
      * @param string $city
      * @param string $state
      * @param string $country
+     *
+     * @return self
      */
     public function __construct(
         $street,
@@ -69,6 +71,8 @@ class Address
         $this->setCity((string)$city);
         $this->setState((string)$state);
         $this->setCountry((string)$country);
+
+        return $this;
     }
 
     /**
@@ -157,6 +161,8 @@ class Address
      * @param string street
      * @throws \UnexpectedValueException se o nome da rua não for string ou
      * conter de 1 à 100 caracteres
+     *
+     * @return self
      */
     public function setStreet($street)
     {
@@ -166,6 +172,8 @@ class Address
             );
         }
         $this->street = $street;
+
+        return $this;
     }
 
     /**
@@ -173,6 +181,8 @@ class Address
      *
      * @param string number
      * @throws \UnexpectedValueException se o numero da casa não for um numero ou conter de 1 à 5 caracteres
+     *
+     * @return self
      */
     public function setNumber($number)
     {
@@ -182,6 +192,8 @@ class Address
             );
         }
         $this->number = $number;
+
+        return $this;
     }
 
     /**
@@ -189,6 +201,8 @@ class Address
      *
      * @param string complement
      * @throws \UnexpectedValueException se o complemento não for string ou conter de 1 à 50 caracteres
+     *
+     * @return self
      */
     public function setComplement($complement)
     {
@@ -198,6 +212,8 @@ class Address
             );
         }
         $this->complement = $complement;
+
+        return $this;
     }
 
     /**
@@ -205,6 +221,8 @@ class Address
      *
      * @param string neighborhood
      * @throws \UnexpectedValueException se o bairro não for string ou conter de 1 à 20 caracteres
+     *
+     * @return self
      */
     public function setNeighborhood($neighborhood)
     {
@@ -214,6 +232,8 @@ class Address
             );
         }
         $this->neighborhood = $neighborhood;
+
+        return $this;
     }
 
     /**
@@ -221,6 +241,8 @@ class Address
      *
      * @param string city
      * @throws \UnexpectedValueException se a cidade não for string ou conter de 1 à 20 caracteres
+     *
+     * @return self
      */
     public function setCity($city)
     {
@@ -230,6 +252,8 @@ class Address
             );
         }
         $this->city = $city;
+
+        return $this;
     }
 
     /**
@@ -237,6 +261,8 @@ class Address
      *
      * @param string state
      * @throws \UnexpectedValueException se a cidade não for string ou ter menos ou mais que 2 caracteres
+     *
+     * @return self
      */
     public function setState($state)
     {
@@ -246,6 +272,8 @@ class Address
             );
         }
         $this->state = $state;
+
+        return $this;
     }
 
     /**
@@ -253,6 +281,8 @@ class Address
      *
      * @param string country
      * @throws \UnexpectedValueException se o pais não for string
+     *
+     * @return self
      */
     public function setCountry($country)
     {
@@ -262,6 +292,8 @@ class Address
             );
         }
         $this->country = $country;
+
+        return $this;
     }
 
     /**
@@ -269,6 +301,8 @@ class Address
      *
      * @param string zipCode
      * @throws \UnexpectedValueException se o cep não for string ou conter de 1 à 9 caracteres
+     *
+     * @return self
      */
     public function setZipCode($zipCode)
     {
@@ -278,6 +312,8 @@ class Address
             );
         }
         $this->zipCode = $zipCode;
+
+        return $this;
     }
 
 }
