@@ -162,7 +162,7 @@ class Transaction
      *
      * @return self
      */
-    private function setSubscription(Subscription $subscription)
+    public function setSubscription(Subscription $subscription)
     {
         $this->subscription = $subscription;
 

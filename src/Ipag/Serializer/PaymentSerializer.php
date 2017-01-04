@@ -72,10 +72,10 @@ class PaymentSerializer
             $message['inicio']           = urlencode($subscription->getStart());
             $message['ciclos']           = urlencode($subscription->getCycle());
             $message['valor_rec']        = urlencode($subscription->getAmount());
-            $message['trial']            = urlencode($subscription->getTrial();
-            $message['trial_ciclos']     = urlencode($subscription->getTrialCycle();
-            $message['trial_frequencia'] = urlencode($subscription->getTrialFrequency();
-            $message['trial_valor']      = urlencode($subscription->getTrialAmount();
+            $message['trial']            = urlencode($subscription->getTrial());
+            $message['trial_ciclos']     = urlencode($subscription->getTrialCycle());
+            $message['trial_frequencia'] = urlencode($subscription->getTrialFrequency());
+            $message['trial_valor']      = urlencode($subscription->getTrialAmount());
         }
         return $message;
     }

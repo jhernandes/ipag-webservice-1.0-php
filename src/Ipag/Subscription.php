@@ -169,7 +169,7 @@ class Subscription
      *
      * @return self
      */
-    private function setFrequency($frequency)
+    public function setFrequency($frequency)
     {
         if (!is_numeric($frequency) || strlen($frequency) < 1 || strlen($frequency) > 2) {
             throw new \UnexpectedValueException(
@@ -188,7 +188,7 @@ class Subscription
      *
      * @return self
      */
-    private function setInterval($interval)
+    public function setInterval($interval)
     {
         switch ($interval) {
             case Subscription::INTERVAL_DAY:
@@ -214,7 +214,7 @@ class Subscription
      *
      * @return self
      */
-    private function setStart($start)
+    public function setStart($start)
     {
         if (preg_match("/([0-9]{2})\/([0-9]{2})\/([0-9]{4})/", $start, $matches)) {
             if (!checkdate($matches[2], $matches[1], $matches[3])) {
@@ -235,7 +235,7 @@ class Subscription
      *
      * @return self
      */
-    private function setCycle($cycle)
+    public function setCycle($cycle)
     {
         if (!is_numeric($cycle) || strlen($cycle) < 1 || strlen($cycle) > 3) {
             throw new \UnexpectedValueException(
@@ -254,7 +254,7 @@ class Subscription
      *
      * @return self
      */
-    private function setAmount($amount)
+    public function setAmount($amount)
     {
         if (!is_double($amount)) {
               throw new \UnexpectedValueException(
@@ -273,7 +273,7 @@ class Subscription
      *
      * @return self
      */
-    private function setTrial($trial)
+    public function setTrial($trial)
     {
         $this->trial = (boolean)$trial;
 
@@ -287,7 +287,7 @@ class Subscription
      *
      * @return self
      */
-    private function setTrialCycle($trialCycle)
+    public function setTrialCycle($trialCycle)
     {
         if (!is_numeric($trialCycle) || strlen($trialCycle) < 1 || strlen($trialCycle) > 3) {
             throw new \UnexpectedValueException(
@@ -306,7 +306,7 @@ class Subscription
      *
      * @return self
      */
-    private function setTrialFrequency($trialFrequency)
+    public function setTrialFrequency($trialFrequency)
     {
         if (!is_numeric($trialFrequency) || strlen($trialFrequency) < 1 || strlen($trialFrequency) > 2) {
             throw new \UnexpectedValueException(
@@ -325,7 +325,7 @@ class Subscription
      *
      * @return self
      */
-    private function setTrialAmount($trialAmount)
+    public function setTrialAmount($trialAmount)
     {
         if (!is_double($trialAmount)) {
               throw new \UnexpectedValueException(
