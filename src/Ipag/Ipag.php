@@ -122,7 +122,7 @@ class Ipag
      *
      * @return Customer
      */
-    public function customer($name, $email, $identity = null, $phone = null)
+    public function customer($name = null, $email = null, $identity = null, $phone = null)
     {
         return new Customer($name, $email, $identity, $phone);
     }

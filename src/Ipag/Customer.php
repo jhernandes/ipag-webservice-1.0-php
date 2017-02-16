@@ -35,10 +35,10 @@ class Customer
      *
      * @return self
      */
-    function __construct($name, $email, $identity = null, $phone = null)
+    function __construct($name = null, $email = null, $identity = null, $phone = null)
     {
-        $this->setName((string)$name);
-        $this->setEmail((string)$email);
+        is_null($name)?:$this->setName((string)$name);
+        is_null($email)?:$this->setEmail((string)$email);
         is_null($identity)?:$this->setIdentity((string)$identity);
         is_null($phone)?:$this->setPhone((string)$phone);
 
