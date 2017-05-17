@@ -25,6 +25,12 @@ class PaymentSerializer
             'metodo'          => urlencode($tx->getPayment()->getMethod()),
         );
 
+        //Tem Parceiro?
+        $parceiro = $tx->getUser()->getIdentification2();
+        if (!empty($parceiro)) {
+            $message['identificacao2'] = $parceiro;
+        }
+
         //Card
         if (!is_null($tx->getPayment()->getCard())) {
             $card = $tx->getPayment()->getCard();

@@ -8,6 +8,11 @@ class User
     private $identification;
 
     /**
+     * @var string
+     */
+    private $identification2;
+
+    /**
      * @param string $identification
      *
      * @return self
@@ -39,6 +44,30 @@ class User
     public function setIdentification($identification)
     {
         $this->identification = $identification;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of identification2.
+     *
+     * @return string
+     */
+    public function getIdentification2()
+    {
+        return $this->identification2;
+    }
+
+    /**
+     * Sets the value of identification2.
+     *
+     * @param string $identification2 the identification2
+     *
+     * @return self
+     */
+    public function setIdentification2($identification2)
+    {
+        $this->identification2 = $identification2;
 
         return $this;
     }

@@ -67,6 +67,17 @@ class Ipag
     }
 
     /**
+     * @param string $identification2
+     * @return self
+     */
+    public function setPartner($identification2)
+    {
+        $this->user->setIdentification2($identification2);
+
+        return self;
+    }
+
+    /**
      * @param  Order   $order
      * @param  null|Payment $payment
      * @param  null|Customer  $customer

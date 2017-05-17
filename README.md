@@ -237,3 +237,37 @@ if (!$response->hasError()) {
 echo $response->getErrorMessage();
 exit;
 ```
+
+## EXEMPLO DE TRANSAÇÃO COM SPLIT (CARTÃO) (Payment Request)
+
+```php
+<?php
+
+require 'vendor/autoload.php';
+
+use Ipag\Ipag;
+use Ipag\Order;
+use Ipag\Payment;
+use Ipag\Transaction;
+
+$ipag = new Ipag('seu_id_ipag', Ipag::TEST);
+$ipag->setPartner('id_parceiro');
+
+$order =    $ipag->order(Order::OPERATION_PAYMENT, 'http://minhaurl.dev','20161109003', '1.00', '1');
+$card =     $ipag->card('4556657802832607', 'SENHOR TESTE', '10', '21', '123');
+$payment =  $ipag->payment(Payment::CREDIT_VISA, $card);
+$customer = $ipag->customer('SENHOR TESTE', 'senhor@teste.com.br', '12312312333','1839161627');
+$address =  $ipag->address('Rua Teste', '123', 'Bairro Teste', '', '20000-000', 'São Paulo', 'SP', 'BR');
+$customer->setAddress($address);
+
+$tx = $ipag->transaction($order, $payment, $customer);
+
+$response = $ipag->paymentRequest($tx);
+
+if (!$response->hasError()) {
+    var_dump(print_r($response, true));
+    exit;
+}
+echo $response->getErrorMessage();
+exit;
+```
