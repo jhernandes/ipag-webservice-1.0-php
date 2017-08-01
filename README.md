@@ -1,4 +1,4 @@
-# Webservice 1.0 PHP
+# IPAG SDK PHP v1.2.2
 
 Integração em PHP com o Webservice iPag 1.0
 
@@ -11,7 +11,7 @@ Se já possui um arquivo `composer.json`, basta adicionar a seguinte dependênci
 
 ```json
 "require": {
-    "jhernandes/ipag-webservice-1.0-php":"dev-master"
+    "jhernandes/ipag-webservice-1.0-php":"~1.2"
 }
 ```
 
@@ -24,7 +24,7 @@ composer install
 Alternativamente, você pode executar diretamente em seu terminal:
 
 ```
-composer require "jhernandes/ipag-webservice-1.0-php"
+composer require jhernandes/ipag-webservice-1.0-php
 ```
 
 ## EXEMPLO DE TRANSAÇÃO COM CARTÃO (Payment Request)
