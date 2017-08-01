@@ -1,19 +1,19 @@
 <?php namespace Ipag;
 
-use Ipag\Transaction;
-use Ipag\Payment;
-use Ipag\Customer;
-use Ipag\Order;
 use Ipag\Address;
 use Ipag\Card;
-use Ipag\Subscription;
-use Ipag\Serializer\PaymentSerializer;
-use Ipag\Serializer\ConsultSerializer;
+use Ipag\Customer;
+use Ipag\Http\CurlOnlyPostHttpClient;
+use Ipag\Http\OnlyPostHttpClientInterface;
+use Ipag\Order;
+use Ipag\Payment;
 use Ipag\Serializer\CancelSerializer;
 use Ipag\Serializer\CaptureSerializer;
+use Ipag\Serializer\ConsultSerializer;
 use Ipag\Serializer\IpagResponse;
-use Ipag\Http\OnlyPostHttpClientInterface;
-use Ipag\Http\CurlOnlyPostHttpClient;
+use Ipag\Serializer\PaymentSerializer;
+use Ipag\Subscription;
+use Ipag\Transaction;
 
 class Ipag
 {
@@ -25,7 +25,7 @@ class Ipag
     /**
      * @var string
      */
-    const TEST = 'http://sandbox.ipag.com.br';
+    const TEST = 'https://sandbox.ipag.com.br';
 
     const PAYMENT = '/pagamento';
     const CONSULT = '/consulta';
@@ -54,13 +54,13 @@ class Ipag
      *
      * @return self
      */
-    function __construct(
+    public function __construct(
         $identification,
         $endpoint = Ipag::PRODUCTION,
         OnlyPostHttpClientInterface $onlyPostClient = null
     ) {
-        $this->user           = new User($identification);
-        $this->endpoint       = $endpoint;
+        $this->user = new User($identification);
+        $this->endpoint = $endpoint;
         $this->onlyPostClient = $onlyPostClient ?: new CurlOnlyPostHttpClient();
 
         return $this;
@@ -110,7 +110,7 @@ class Ipag
     ) {
         return new Order(
             $operation, $callbackUrl, $orderId,
-            (double)$amount, $installments, $returnType
+            (double) $amount, $installments, $returnType
         );
     }
 

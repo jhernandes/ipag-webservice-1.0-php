@@ -52,7 +52,7 @@ class Order
      *
      * @return self
      */
-    function __construct(
+    public function __construct(
         $operation,
         $callbackUrl = Order::RETURN_XML,
         $orderId,
@@ -60,12 +60,12 @@ class Order
         $installments = null,
         $returnType = Order::RETURN_XML
     ) {
-        is_null($orderId)?:$this->setOrderId((string)$orderId);
-        is_null($amount)?:$this->setAmount($amount);
-        is_null($installments)?:$this->setInstallments((int)$installments);
-        $this->setOperation((string)$operation);
-        $this->setCallbackUrl((string)$callbackUrl);
-        $this->setReturnType((string)$returnType);
+        is_null($orderId) ?: $this->setOrderId((string) $orderId);
+        is_null($amount) ?: $this->setAmount($amount);
+        is_null($installments) ?: $this->setInstallments((int) $installments);
+        $this->setOperation((string) $operation);
+        $this->setCallbackUrl((string) $callbackUrl);
+        $this->setReturnType((string) $returnType);
 
         return $this;
     }
@@ -170,7 +170,7 @@ class Order
             null,
         );
 
-        if (! in_array($operation, $allowedOperations, true)) {
+        if (!in_array($operation, $allowedOperations, true)) {
             throw new \UnexpectedValueException(
                 'O tipo de operação (operation) não é válido'
             );
@@ -209,7 +209,7 @@ class Order
             null,
         );
 
-        if (! in_array($returnType, $allowedTypes, true)) {
+        if (!in_array($returnType, $allowedTypes, true)) {
             throw new \UnexpectedValueException(
                 'O tipo de retorno (returnType) não é válido'
             );
@@ -228,10 +228,11 @@ class Order
      */
     public function setAmount($amount)
     {
+        $amount = (double) number_format(str_replace(",", ".", $num), 2, ".", "");
         if (!is_double($amount)) {
-              throw new \UnexpectedValueException(
-                  'O Valor do Pedido deve ser do tipo double'
-              );
+            throw new \UnexpectedValueException(
+                'O Valor do Pedido deve ser do tipo double'
+            );
         }
         $this->amount = $amount;
 

@@ -24,7 +24,7 @@ composer install
 Alternativamente, você pode executar diretamente em seu terminal:
 
 ```
-composer require "jhernandes/ipag-webservice-1.0-php:dev-master"
+composer require "jhernandes/ipag-webservice-1.0-php"
 ```
 
 ## EXEMPLO DE TRANSAÇÃO COM CARTÃO (Payment Request)
@@ -41,7 +41,7 @@ use Ipag\Transaction;
 
 $ipag = new Ipag('seu_id_ipag', Ipag::TEST);
 
-$order =    $ipag->order(Order::OPERATION_PAYMENT, 'http://minhaurl.dev','20161109003', '1.00', '1');
+$order =    $ipag->order(Order::OPERATION_PAYMENT, 'http://minhaurl.dev','20161109003', 1.00, '1');
 $card =     $ipag->card('4556657802832607', 'SENHOR TESTE', '10', '21', '123');
 $payment =  $ipag->payment(Payment::CREDIT_VISA, $card);
 $customer = $ipag->customer('SENHOR TESTE', 'senhor@teste.com.br', '12312312333','1839161627');
@@ -74,7 +74,7 @@ use Ipag\Transaction;
 
 $ipag = new Ipag('seu_id_ipag', Ipag::TEST);
 
-$order =    $ipag->order(Order::OPERATION_PAYMENT, 'http://minhaurl.dev','20161109003', '1.00', '1');
+$order =    $ipag->order(Order::OPERATION_PAYMENT, 'http://minhaurl.dev','20161109003', 1.00, '1');
 
 $payment =  $ipag->payment(Payment::BANKSLIP_BB);
 $customer = $ipag->customer('SENHOR TESTE', 'senhor@teste.com.br', '12312312333','1839161627');
@@ -253,7 +253,7 @@ use Ipag\Transaction;
 $ipag = new Ipag('seu_id_ipag', Ipag::TEST);
 $ipag->setPartner('id_parceiro');
 
-$order =    $ipag->order(Order::OPERATION_PAYMENT, 'http://minhaurl.dev','20161109003', '1.00', '1');
+$order =    $ipag->order(Order::OPERATION_PAYMENT, 'http://minhaurl.dev','20161109003', 1.00, '1');
 $card =     $ipag->card('4556657802832607', 'SENHOR TESTE', '10', '21', '123');
 $payment =  $ipag->payment(Payment::CREDIT_VISA, $card);
 $customer = $ipag->customer('SENHOR TESTE', 'senhor@teste.com.br', '12312312333','1839161627');
