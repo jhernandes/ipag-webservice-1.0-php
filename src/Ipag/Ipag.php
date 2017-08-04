@@ -110,7 +110,7 @@ class Ipag
     ) {
         return new Order(
             $operation, $callbackUrl, $orderId,
-            (double) $amount, $installments, $returnType
+            $amount, $installments, $returnType
         );
     }
 

@@ -228,7 +228,7 @@ class Order
      */
     public function setAmount($amount)
     {
-        $amount = (double) number_format(str_replace(",", ".", $num), 2, ".", "");
+        $amount = (double) number_format(str_replace(",", ".", $amount), 2, ".", "");
         if (!is_double($amount)) {
             throw new \UnexpectedValueException(
                 'O Valor do Pedido deve ser do tipo double'
