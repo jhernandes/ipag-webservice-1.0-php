@@ -211,9 +211,9 @@ class Ipag
 
         return $sendPostRequest(
             $this->endpoint,
-            [
+            array(
                 'Content-Type' => 'application/x-www-form-urlencoded; charset=utf-8',
-            ],
+            ),
             $message
         );
     }

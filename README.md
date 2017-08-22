@@ -1,4 +1,4 @@
-# IPAG SDK PHP v1.2.2
+# IPAG SDK PHP
 
 Integração em PHP com o Webservice iPag 1.0
 
