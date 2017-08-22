@@ -27,6 +27,66 @@ Alternativamente, você pode executar diretamente em seu terminal:
 composer require jhernandes/ipag-webservice-1.0-php
 ```
 
+##ENDPOINTS
+
+Endpoint | Variável Estática
+-------- | -----------------
+Produção | Ipag::PRODUCTION
+Sandbox  | Ipag::TEST
+
+## OPERAÇÕES
+
+Operação | Variável Estática
+-------- | ----------------
+Pagamento| Order::OPERATION_PAYMENT
+Consulta | Order::OPERATION_CONSULT
+Captura  | Order::OPERATION_CAPTURE
+Cancela  | Order::OPERATION_CANCEL
+
+## MÉTODOS DE PAGAMENTOS
+
+Método | Tipo | Variável Estática
+------ | -----| --------
+visa | crédito | Payment::CREDIT_VISA
+mastercard | crédito | Payment::CREDIT_MASTERCARD
+amex | crédito | Payment::CREDIT_AMEX
+elo | crédito | Payment::CREDIT_ELO
+discover | crédito | Payment::CREDIT_DISCOVER
+hipercard | crédito | Payment::CREDIT_HIPERCARD
+jcb | crédito | Payment::CREDIT_JCB
+diners | crédito |  Payment::CREDIT_DINERS
+aura | crédito | Payment::CREDIT_AURA
+visaelectron | débito | Payment::DEBIT_VISAELECTRON
+maestro | débito | Payment::DEBIT_MAESTRO
+boleto_itau | boleto | Payment::BANKSLIP_ITAU
+boleto_cef | boleto | Payment::BANKSLIP_CEF
+boleto_bradesco | boleto | Payment::BANKSLIP_BRADESCO
+boleto_bb | boleto | Payment::BANKSLIP_BB
+boleto_banespasantander | boleto | Payment::BANKSLIP_SANTANDER
+boletozoop | boleto | Payment::BANKSLIP_ZOOP
+boletostone | boleto | Payment::BANKSLIP_STONE
+boletocielo | boleto | Payment::BANKSLIP_CIELO
+boletoitaushopline | boleto | Payment::BANKSLIP_ITAUSHOPLINE
+boletostelo | boleto | Payment::BANKSLIP_STELO
+itaushopline | transferência | Payment::BANK_ITAUSHOPLINE
+bancobrasil | transferência | Payment::BANK_BB
+
+## MAPEAMENTO DOS CAMPOS
+
+```php
+
+<?php
+$ipag = new Ipag(@ID_IPAG, @ENDPOINT);
+
+$order =    $ipag->order(@OPERACAO, @URL_RETORNO, @NUMERO_PEDIDO, @VALOR, @PARCELAMENTO);
+$card =     $ipag->card(@NUMERO_CARTAO, @NOME_NO_CARTAO, @VENCIMENTO_MES, @VENCIMENTO_ANO, @CVV);
+$payment =  $ipag->payment(@METODO, $card);
+$customer = $ipag->customer(@NOME, @EMAIL, @CPF/CNPJ, @TELEFONE);
+$address =  $ipag->address(@LOGRADOURO, @NUMERO, @BAIRRO, @COMPLEMENTO, @CEP, @CIDADE, @UF, @PAIS);
+$customer->setAddress($address);
+$tx = $ipag->transaction($order, $payment, $customer);
+```
+
 ## EXEMPLO DE TRANSAÇÃO COM CARTÃO (Payment Request)
 
 ```php
