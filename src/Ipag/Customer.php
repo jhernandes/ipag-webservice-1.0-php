@@ -35,12 +35,12 @@ class Customer
      *
      * @return self
      */
-    function __construct($name = null, $email = null, $identity = null, $phone = null)
+    public function __construct($name = null, $email = null, $identity = null, $phone = null)
     {
-        is_null($name)?:$this->setName((string)$name);
-        is_null($email)?:$this->setEmail((string)$email);
-        is_null($identity)?:$this->setIdentity((string)$identity);
-        is_null($phone)?:$this->setPhone((string)$phone);
+        is_null($name) ?: $this->setName((string) $name);
+        is_null($email) ?: $this->setEmail((string) $email);
+        is_null($identity) ?: $this->setIdentity((string) $identity);
+        is_null($phone) ?: $this->setPhone((string) $phone);
 
         return $this;
     }
@@ -107,7 +107,7 @@ class Customer
      */
     public function setName($name)
     {
-        if (!is_string($name) || strlen($name) > 30) {
+        if (!empty($name) && (!is_string($name) || strlen($name) > 30)) {
             throw new \UnexpectedValueException(
                 'O nome do cliente deve ser uma string com, no máximo, 30 caracteres'
             );
@@ -142,9 +142,9 @@ class Customer
      */
     public function setEmail($email)
     {
-        if (!is_string($email) || strlen($email) < 1 || strlen($email) > 100
+        if (!empty($email) && (!is_string($email) || strlen($email) < 1 || strlen($email) > 100
             || !filter_var($email, FILTER_VALIDATE_EMAIL)
-        ) {
+        )) {
             throw new \UnexpectedValueException(
                 'O email do cliente deve ser válido e ser string e ter entre 1 e 100 caracteres'
             );
@@ -166,7 +166,7 @@ class Customer
      */
     public function setPhone($phone)
     {
-        if (!is_numeric($phone) || strlen($phone) < 8 || strlen($phone) > 15) {
+        if (!empty($phone) && (!is_numeric($phone) || strlen($phone) < 8 || strlen($phone) > 15)) {
             throw new \UnexpectedValueException(
                 'O número do telefone/celular não é válido ou não tem entre 8 e 15 caracteres'
             );

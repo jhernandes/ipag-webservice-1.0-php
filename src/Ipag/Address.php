@@ -63,14 +63,14 @@ class Address
         $state,
         $country = 'BR'
     ) {
-        $this->setStreet((string)$street);
-        $this->setNumber((int)$number);
-        $this->setNeighborhood((string)$neighborhood);
-        empty($complement)?:$this->setComplement((string)$complement);
-        $this->setZipCode((string)$zipCode);
-        $this->setCity((string)$city);
-        $this->setState((string)$state);
-        $this->setCountry((string)$country);
+        $this->setStreet((string) $street);
+        $this->setNumber((int) $number);
+        $this->setNeighborhood((string) $neighborhood);
+        empty($complement) ?: $this->setComplement((string) $complement);
+        $this->setZipCode((string) $zipCode);
+        $this->setCity((string) $city);
+        $this->setState((string) $state);
+        $this->setCountry((string) $country);
 
         return $this;
     }
@@ -166,7 +166,7 @@ class Address
      */
     public function setStreet($street)
     {
-        if (!is_string($street) || strlen($street) < 1 || strlen($street) > 100) {
+        if (!empty($street) && (!is_string($street) || strlen($street) < 1 || strlen($street) > 100)) {
             throw new \UnexpectedValueException(
                 'O nome da rua deve ser string e ter entre 1 e 100 caracteres'
             );
@@ -186,7 +186,7 @@ class Address
      */
     public function setNumber($number)
     {
-        if (!is_numeric($number) || strlen($number) < 1 || strlen($number) > 5) {
+        if (!empty($number) && (!is_numeric($number) || strlen($number) < 1 || strlen($number) > 5)) {
             throw new \UnexpectedValueException(
                 'O número do endereço deve ser numérico e ter entre 1 e 5 caracteres'
             );
@@ -206,7 +206,8 @@ class Address
      */
     public function setComplement($complement)
     {
-        if (!is_string($complement) || strlen($complement) < 1 || strlen($complement) > 50) {
+        if (!empty($complement) &&
+            (!is_string($complement) || strlen($complement) < 1 || strlen($complement) > 50)) {
             throw new \UnexpectedValueException(
                 'O complemento do endereço deve ser string e ter entre 1 e 255 caracteres'
             );
@@ -226,7 +227,8 @@ class Address
      */
     public function setNeighborhood($neighborhood)
     {
-        if (!is_string($neighborhood) || strlen($neighborhood) < 1 || strlen($neighborhood) > 20) {
+        if (!empty($neighborhood) &&
+            (!is_string($neighborhood) || strlen($neighborhood) < 1 || strlen($neighborhood) > 20)) {
             throw new \UnexpectedValueException(
                 'O bairro do endereço deve ser string e ter entre 1 e 20 caracteres'
             );
@@ -246,7 +248,7 @@ class Address
      */
     public function setCity($city)
     {
-        if (!is_string($city) || strlen($city) < 1 || strlen($city) > 20) {
+        if (!empty($city) && (!is_string($city) || strlen($city) < 1 || strlen($city) > 20)) {
             throw new \UnexpectedValueException(
                 'A cidade deve ser string e ter entre 1 e 20 caracteres'
             );
@@ -266,7 +268,7 @@ class Address
      */
     public function setState($state)
     {
-        if (!is_string($state) || strlen($state) != 2) {
+        if (!empty($state) && (!is_string($state) || strlen($state) != 2)) {
             throw new \UnexpectedValueException(
                 'O estado deve ser string e ter 2 caracteres'
             );
@@ -286,7 +288,7 @@ class Address
      */
     public function setCountry($country)
     {
-        if (!is_string($country)) {
+        if (!empty($country) && !is_string($country)) {
             throw new \UnexpectedValueException(
                 'O país deve ser string'
             );
@@ -306,7 +308,7 @@ class Address
      */
     public function setZipCode($zipCode)
     {
-        if (!is_string($zipCode) || strlen($zipCode) < 1 || strlen($zipCode) > 9) {
+        if (!empty($zipCode) && (!is_string($zipCode) || strlen($zipCode) < 1 || strlen($zipCode) > 9)) {
             throw new \UnexpectedValueException(
                 'O CEP deve ser string e ter entre 1 e 8 caracteres'
             );
