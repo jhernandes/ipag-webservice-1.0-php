@@ -33,6 +33,11 @@ class Card
     private $token;
 
     /**
+     * @var bool
+     */
+    private $save;
+
+    /**
      * @param string      $tokenOrNumber
      * @param null|string $holder
      * @param null|string $expireMonth
@@ -248,4 +253,23 @@ class Card
         return $this;
     }
 
+    /**
+     * @return bool
+     */
+    public function getSave()
+    {
+        return (bool) $this->save;
+    }
+
+    /**
+     * @param bool $save
+     *
+     * @return self
+     */
+    public function setSave($save)
+    {
+        $this->save = (bool) $save;
+
+        return $this;
+    }
 }

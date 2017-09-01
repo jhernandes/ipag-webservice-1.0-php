@@ -68,6 +68,26 @@ class Response
     private $errorMessage;
 
     /**
+     * @var string
+     */
+    private $token;
+
+    /**
+     * @var string
+     */
+    private $last4;
+
+    /**
+     * @var string
+     */
+    private $mes;
+
+    /**
+     * @var string
+     */
+    private $ano;
+
+    /**
      * Get the value of Tid
      *
      * @return string
@@ -401,5 +421,85 @@ class Response
     public function isCaptured()
     {
         return ($this->getPaymentStatus() == '8');
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    /**
+     * @param string $token
+     *
+     * @return self
+     */
+    public function setToken($token)
+    {
+        $this->token = $token;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLast4()
+    {
+        return $this->last4;
+    }
+
+    /**
+     * @param string $last4
+     *
+     * @return self
+     */
+    public function setLast4($last4)
+    {
+        $this->last4 = $last4;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAno()
+    {
+        return $this->ano;
+    }
+
+    /**
+     * @param string $ano
+     *
+     * @return self
+     */
+    public function setAno($ano)
+    {
+        $this->ano = $ano;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMes()
+    {
+        return $this->mes;
+    }
+
+    /**
+     * @param string $mes
+     *
+     * @return self
+     */
+    public function setMes($mes)
+    {
+        $this->mes = $mes;
+
+        return $this;
     }
 }
