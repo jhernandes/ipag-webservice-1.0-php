@@ -166,12 +166,12 @@ class Address
      */
     public function setStreet($street)
     {
-        if (!empty($street) && (!is_string($street) || strlen($street) < 1 || strlen($street) > 100)) {
+        if (!empty($street) && (!is_string($street))) {
             throw new \UnexpectedValueException(
-                'O nome da rua deve ser string e ter entre 1 e 100 caracteres'
+                'O nome da rua deve ser string'
             );
         }
-        $this->street = $street;
+        $this->street = substr($street, 0, 100);
 
         return $this;
     }
@@ -186,12 +186,12 @@ class Address
      */
     public function setNumber($number)
     {
-        if (!empty($number) && (!is_numeric($number) || strlen($number) < 1 || strlen($number) > 5)) {
+        if (!empty($number) && !is_numeric($number)) {
             throw new \UnexpectedValueException(
-                'O número do endereço deve ser numérico e ter entre 1 e 5 caracteres'
+                'O número do endereço deve ser numérico'
             );
         }
-        $this->number = $number;
+        $this->number = substr($number, 0, 15);
 
         return $this;
     }
@@ -206,13 +206,12 @@ class Address
      */
     public function setComplement($complement)
     {
-        if (!empty($complement) &&
-            (!is_string($complement) || strlen($complement) < 1 || strlen($complement) > 50)) {
+        if (!empty($complement) && !is_string($complement)) {
             throw new \UnexpectedValueException(
-                'O complemento do endereço deve ser string e ter entre 1 e 255 caracteres'
+                'O complemento do endereço deve ser string'
             );
         }
-        $this->complement = $complement;
+        $this->complement = substr($complement, 0, 255);
 
         return $this;
     }
@@ -227,13 +226,12 @@ class Address
      */
     public function setNeighborhood($neighborhood)
     {
-        if (!empty($neighborhood) &&
-            (!is_string($neighborhood) || strlen($neighborhood) < 1 || strlen($neighborhood) > 20)) {
+        if (!empty($neighborhood) && !is_string($neighborhood)) {
             throw new \UnexpectedValueException(
-                'O bairro do endereço deve ser string e ter entre 1 e 20 caracteres'
+                'O bairro do endereço deve ser string'
             );
         }
-        $this->neighborhood = $neighborhood;
+        $this->neighborhood = substr($neighborhood, 0, 40);
 
         return $this;
     }
@@ -248,12 +246,12 @@ class Address
      */
     public function setCity($city)
     {
-        if (!empty($city) && (!is_string($city) || strlen($city) < 1 || strlen($city) > 20)) {
+        if (!empty($city) && !is_string($city)) {
             throw new \UnexpectedValueException(
-                'A cidade deve ser string e ter entre 1 e 20 caracteres'
+                'A cidade deve ser string'
             );
         }
-        $this->city = $city;
+        $this->city = substr($city, 0, 40);
 
         return $this;
     }
@@ -308,12 +306,12 @@ class Address
      */
     public function setZipCode($zipCode)
     {
-        if (!empty($zipCode) && (!is_string($zipCode) || strlen($zipCode) < 1 || strlen($zipCode) > 9)) {
+        if (!empty($zipCode) && !is_string($zipCode)) {
             throw new \UnexpectedValueException(
                 'O CEP deve ser string e ter entre 1 e 8 caracteres'
             );
         }
-        $this->zipCode = $zipCode;
+        $this->zipCode = substr(preg_replace('/\D/', '', $zipCode), 0, 8);
 
         return $this;
     }
