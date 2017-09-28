@@ -21,6 +21,7 @@ class PaymentSerializer
             'boleto_tipo' => urlencode('xml'),
             'valor' => urlencode($tx->getOrder()->getAmount()),
             'parcelas' => urlencode($tx->getOrder()->getInstallments()),
+            'vencto' => urlencode($tx->getOrder()->getExpiry()),
             //Payment
             'metodo' => urlencode($tx->getPayment()->getMethod()),
         );

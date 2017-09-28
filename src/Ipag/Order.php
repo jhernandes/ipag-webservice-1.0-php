@@ -43,6 +43,11 @@ class Order
     private $installments;
 
     /**
+     * @var string
+     */
+    private $expiry;
+
+    /**
      * @param string $operation
      * @param string $callbackUrl
      * @param string $orderId
@@ -256,6 +261,35 @@ class Order
             );
         }
         $this->installments = $installments;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExpiry()
+    {
+        return $this->expiry;
+    }
+
+    /**
+     * @param string $expiry
+     *
+     * @return self
+     */
+    public function setExpiry($expiry)
+    {
+        if (preg_match("/([0-9]{2})\/([0-9]{2})\/([0-9]{4})/", $expiry, $matches)) {
+            if (!checkdate($matches[2], $matches[1], $matches[3])) {
+                throw new \UnexpectedValueException('Informe uma data de vecimento válida.');
+            }
+            $this->expiry = $expiry;
+        } else {
+            throw new \UnexpectedValueException(
+                'A data de vencimento deve ser informada utilizando o formato dd/mm/yyyy'
+            );
+        }
 
         return $this;
     }

@@ -79,6 +79,11 @@ bancobrasil | transferência | Payment::BANK_BB
 $ipag = new Ipag(@ID_IPAG, @ENDPOINT);
 
 $order =    $ipag->order(@OPERACAO, @URL_RETORNO, @NUMERO_PEDIDO, @VALOR, @PARCELAMENTO);
+
+//Para adicionar vencimento (BOLETO)
+// DD/MM/AAAA
+//$order->setExpiry('21/10/2017');
+
 $card =     $ipag->card(@NUMERO_CARTAO, @NOME_NO_CARTAO, @VENCIMENTO_MES, @VENCIMENTO_ANO, @CVV);
 $payment =  $ipag->payment(@METODO, $card);
 $customer = $ipag->customer(@NOME, @EMAIL, @CPF/CNPJ, @TELEFONE);
@@ -134,9 +139,13 @@ use Ipag\Transaction;
 
 $ipag = new Ipag('seu_id_ipag', Ipag::TEST);
 
-$order =    $ipag->order(Order::OPERATION_PAYMENT, 'http://minhaurl.dev','20161109003', 1.00, '1');
+$order = $ipag->order(Order::OPERATION_PAYMENT, 'http://minhaurl.dev','20161109003', 1.00, '1');
 
-$payment =  $ipag->payment(Payment::BANKSLIP_BB);
+//Para adicionar vencimento (BOLETO)
+// DD/MM/AAAA
+//$order->setExpiry('21/10/2017');
+
+$payment = $ipag->payment(Payment::BANKSLIP_BB);
 $customer = $ipag->customer('SENHOR TESTE', 'senhor@teste.com.br', '12312312333','1839161627');
 $address =  $ipag->address('Rua Teste', '123', 'Bairro Teste', '', '20000-000', 'São Paulo', 'SP', 'BR');
 $customer->setAddress($address);
