@@ -26,6 +26,11 @@ class PaymentSerializer
             'metodo' => urlencode($tx->getPayment()->getMethod()),
         );
 
+        $instructions = $tx->getPayment()->getInstructions();
+        foreach ($instructions as $key => $instruction) {
+            $message["instructions[{$key}]"] = $instruction;
+        }
+
         //Tem Parceiro?
         $parceiro = $tx->getUser()->getIdentification2();
         if (!empty($parceiro)) {

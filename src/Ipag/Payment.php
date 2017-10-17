@@ -41,6 +41,11 @@ class Payment
     private $card;
 
     /**
+     * @var array
+     */
+    private $instructions = array();
+
+    /**
      * @param string $method
      * @param Card|null $card
      *
@@ -99,6 +104,28 @@ class Payment
     public function setCard(Card $card)
     {
         $this->card = $card;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getInstructions()
+    {
+        return $this->instructions;
+    }
+
+    /**
+     * @param string $instructions
+     *
+     * @return self
+     */
+    public function setInstructions($instructions)
+    {
+        if (count($this->instructions) < 3) {
+            $this->instructions[] = substr($instructions, 0, 80);
+        }
 
         return $this;
     }
