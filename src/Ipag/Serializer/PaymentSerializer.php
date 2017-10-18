@@ -28,7 +28,7 @@ class PaymentSerializer
 
         $instructions = $tx->getPayment()->getInstructions();
         foreach ($instructions as $key => $instruction) {
-            $message["instructions[{$key}]"] = $instruction;
+            $message["instrucoes[{$key}]"] = $instruction;
         }
 
         //Tem Parceiro?
