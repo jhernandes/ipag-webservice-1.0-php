@@ -46,6 +46,11 @@ class Payment
     private $instructions = array();
 
     /**
+     * @var string
+     */
+    private $softDescriptor;
+
+    /**
      * @param string $method
      * @param Card|null $card
      *
@@ -126,6 +131,26 @@ class Payment
         if (count($this->instructions) < 3) {
             $this->instructions[] = substr($instructions, 0, 80);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSoftDescriptor()
+    {
+        return $this->softDescriptor;
+    }
+
+    /**
+     * @param string $softDescriptor
+     *
+     * @return self
+     */
+    public function setSoftDescriptor($softDescriptor)
+    {
+        $this->softDescriptor = substr($softDescriptor, 0, 22);
 
         return $this;
     }

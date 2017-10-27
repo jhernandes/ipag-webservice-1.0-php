@@ -37,6 +37,12 @@ class PaymentSerializer
             $message['identificacao2'] = $parceiro;
         }
 
+        //SoftDescriptor?
+        $softDescriptor = $tx->getPayment()->getSoftDescriptor();
+        if (!empty($softDescriptor)) {
+            $message['softdescriptor'] = $softDescriptor;
+        }
+
         //Card
         if (!is_null($tx->getPayment()->getCard())) {
             $card = $tx->getPayment()->getCard();

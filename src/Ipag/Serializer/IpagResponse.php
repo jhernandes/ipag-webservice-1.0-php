@@ -18,8 +18,6 @@ class IpagResponse
 
         $response = new Response();
 
-        // !isset($doc->erro) ?: $response->setError((string) $doc->erro);
-        // !isset($doc->mensagem) ?: $response->setErrorMessage((string) $doc->mensagem);
         !isset($doc->id_transacao) ?: $response->setTid((string) $doc->id_transacao);
         !isset($doc->valor) ?: $response->setAmount((string) $doc->valor);
         !isset($doc->num_pedido) ?: $response->setOrderId((string) $doc->num_pedido);
@@ -39,8 +37,8 @@ class IpagResponse
         !isset($doc->ano) ?: $response->setAno((string) $doc->ano);
 
         //ERROR
-        !isset($doc->error->code) ?: $response->setError((string) $doc->error->code);
-        !isset($doc->error->message) ?: $response->setErrorMessage((string) $doc->error->message);
+        !isset($doc->code) ?: $response->setError((string) $doc->code);
+        !isset($doc->message) ?: $response->setErrorMessage((string) $doc->message);
 
         return $response;
     }
