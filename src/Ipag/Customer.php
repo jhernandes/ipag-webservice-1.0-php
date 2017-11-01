@@ -107,12 +107,12 @@ class Customer
      */
     public function setName($name)
     {
-        if (!empty($name) && (!is_string($name) || strlen($name) > 30)) {
+        if (!empty($name) && (!is_string($name))) {
             throw new \UnexpectedValueException(
-                'O nome do cliente deve ser uma string com, no máximo, 30 caracteres'
+                'O nome do cliente deve ser uma string'
             );
         }
-        $this->name = $name;
+        $this->name = substr($name, 0, 30);
 
         return $this;
     }
@@ -136,20 +136,19 @@ class Customer
      *
      * @param string email
      * @throws \UnexpectedValueException se o email não for válido ou string ou não conter
-     * de 1 a 100 caracteres
+     * de 1 a 60 caracteres
      *
      * @return self
      */
     public function setEmail($email)
     {
-        if (!empty($email) && (!is_string($email) || strlen($email) < 1 || strlen($email) > 100
-            || !filter_var($email, FILTER_VALIDATE_EMAIL)
+        if (!empty($email) && (!is_string($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)
         )) {
             throw new \UnexpectedValueException(
-                'O email do cliente deve ser válido e ser string e ter entre 1 e 100 caracteres'
+                'O email do cliente deve ser válido e ser string'
             );
         }
-        $this->email = $email;
+        $this->email = substr($email, 0, 60);
 
         return $this;
     }
@@ -166,9 +165,9 @@ class Customer
      */
     public function setPhone($phone)
     {
-        if (!empty($phone) && (!is_numeric($phone) || strlen($phone) < 8 || strlen($phone) > 15)) {
+        if (!empty($phone) && !is_numeric($phone)) {
             throw new \UnexpectedValueException(
-                'O número do telefone/celular não é válido ou não tem entre 8 e 15 caracteres'
+                'O número do telefone/celular não é válido'
             );
         }
         $this->phone = $phone;

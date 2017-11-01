@@ -159,12 +159,12 @@ class Card
      */
     public function setHolder($holder)
     {
-        if (!is_string($holder) || strlen($holder) > 50) {
+        if (!is_string($holder)) {
             throw new \UnexpectedValueException(
-                'O nome do portador deve ser uma string com, no máximo, 50 caracteres'
+                'O nome do portador deve ser uma string'
             );
         }
-        $this->holder = $holder;
+        $this->holder = substr($holder, 0, 50);
 
         return $this;
     }
@@ -243,9 +243,9 @@ class Card
      */
     public function setToken($token)
     {
-        if (!is_string($token) || strlen($token) != 36) {
+        if (!empty($token) && !is_string($token)) {
             throw new \UnexpectedValueException(
-                'O token deve ser uma string com 36 caracteres'
+                'O token deve ser uma string'
             );
         }
         $this->token = $token;
