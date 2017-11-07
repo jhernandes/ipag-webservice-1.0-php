@@ -82,12 +82,17 @@ class Ipag
      * @param  Order   $order
      * @param  null|Payment $payment
      * @param  null|Customer  $customer
+     * @param  null|Cart  $cart
      *
      * @return Transaction
      */
-    public function transaction(Order $order, Payment $payment = null, Customer $customer = null)
-    {
-        return new Transaction($this->user, $order, $payment, $customer);
+    public function transaction(
+        Order $order,
+        Payment $payment = null,
+        Customer $customer = null,
+        Cart $cart = null
+    ) {
+        return new Transaction($this->user, $order, $payment, $customer, $cart);
     }
 
     /**
