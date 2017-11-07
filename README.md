@@ -11,7 +11,7 @@ Se já possui um arquivo `composer.json`, basta adicionar a seguinte dependênci
 
 ```json
 "require": {
-    "jhernandes/ipag-webservice-1.0-php":"~1.2"
+    "jhernandes/ipag-webservice-1.0-php"
 }
 ```
 
@@ -88,8 +88,9 @@ $card =     $ipag->card(@NUMERO_CARTAO, @NOME_NO_CARTAO, @VENCIMENTO_MES, @VENCI
 $payment =  $ipag->payment(@METODO, $card);
 $customer = $ipag->customer(@NOME, @EMAIL, @CPF/CNPJ, @TELEFONE);
 $address =  $ipag->address(@LOGRADOURO, @NUMERO, @BAIRRO, @COMPLEMENTO, @CEP, @CIDADE, @UF, @PAIS);
+$cart = $ipag->cart()->addProduct($ipag->product(@NOME, @QUANTIDADE, @PRECO_UNITARIO, @SKU/CODIGO));
 $customer->setAddress($address);
-$tx = $ipag->transaction($order, $payment, $customer);
+$tx = $ipag->transaction($order, $payment, $customer, $cart);
 ```
 
 ## EXEMPLO DE TRANSAÇÃO COM CARTÃO (Payment Request)
@@ -110,10 +111,20 @@ $order =    $ipag->order(Order::OPERATION_PAYMENT, 'http://minhaurl.dev','201611
 $card =     $ipag->card('4556657802832607', 'SENHOR TESTE', '10', '21', '123');
 $payment =  $ipag->payment(Payment::CREDIT_VISA, $card);
 $customer = $ipag->customer('SENHOR TESTE', 'senhor@teste.com.br', '12312312333','1839161627');
+
+//OPCIONAL ENDEREÇO
 $address =  $ipag->address('Rua Teste', '123', 'Bairro Teste', '', '20000-000', 'São Paulo', 'SP', 'BR');
 $customer->setAddress($address);
 
-$tx = $ipag->transaction($order, $payment, $customer);
+//OPCIONAL PRODUTOS
+// PRODUTO (NOME, QUANTIDADE, PREÇO UNITÁRIO, SKU/CÓDIGO);
+$cart = $ipag->cart()
+    ->addProduct($ipag->product('DVD Rei Leão', 2, 29.00, 'ART785634'))
+    ->addProduct($ipag->product('DVD MAD MAX', 1, 29.00, 'ART7851234'))
+    ->addProduct($ipag->product('BOX DVDs MATRIX', 3, 29.00, 'ART781000'))
+    ->addProduct($ipag->product('DVD TOY STORY', 1, 29.00, 'ART783333'));
+
+$tx = $ipag->transaction($order, $payment, $customer, $cart);
 
 $response = $ipag->paymentRequest($tx);
 

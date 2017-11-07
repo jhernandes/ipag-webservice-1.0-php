@@ -2,6 +2,7 @@
 
 use Ipag\Address;
 use Ipag\Card;
+use Ipag\Cart;
 use Ipag\Customer;
 use Ipag\Http\CurlOnlyPostHttpClient;
 use Ipag\Http\OnlyPostHttpClientInterface;
@@ -112,6 +113,20 @@ class Ipag
             $operation, $callbackUrl, $orderId,
             $amount, $installments, $returnType
         );
+    }
+
+    /**
+     * Create Cart Object
+     * @return Cart
+     */
+    public function cart()
+    {
+        return new Cart();
+    }
+
+    public function product($name, $quantity, $unitPrice, $sku = null)
+    {
+        return new Product($name, $quantity, $unitPrice, $sku);
     }
 
     /**

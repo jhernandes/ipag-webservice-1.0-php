@@ -33,18 +33,29 @@ class Transaction
     private $tid;
 
     /**
+     * @var Cart
+     */
+    private $cart;
+
+    /**
      * @param Order $order
      * @param null|Payment $payment
      * @param null|Customer $customer
      *
      * @return self
      */
-    function __construct(User $user, Order $order, Payment $payment = null, Customer $customer = null)
-    {
+    public function __construct(
+        User $user,
+        Order $order,
+        Payment $payment = null,
+        Customer $customer = null,
+        Cart $cart = null
+    ) {
         $this->setUser($user);
         $this->setOrder($order);
-        is_null($payment)?:$this->setPayment($payment);
-        is_null($customer)?:$this->setCustomer($customer);
+        is_null($payment) ?: $this->setPayment($payment);
+        is_null($customer) ?: $this->setCustomer($customer);
+        is_null($cart) ?: $this->setCart($cart);
 
         return $this;
     }
@@ -189,6 +200,26 @@ class Transaction
     public function setTid($tid)
     {
         $this->tid = $tid;
+
+        return $this;
+    }
+
+    /**
+     * @return Cart
+     */
+    public function getCart()
+    {
+        return $this->cart;
+    }
+
+    /**
+     * @param Cart $cart
+     *
+     * @return self
+     */
+    public function setCart(Cart $cart)
+    {
+        $this->cart = $cart;
 
         return $this;
     }

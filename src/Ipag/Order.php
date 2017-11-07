@@ -48,6 +48,11 @@ class Order
     private $expiry;
 
     /**
+     * @var string
+     */
+    private $fingerprint;
+
+    /**
      * @param string $operation
      * @param string $callbackUrl
      * @param string $orderId
@@ -290,6 +295,26 @@ class Order
                 'A data de vencimento deve ser informada utilizando o formato dd/mm/yyyy'
             );
         }
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFingerprint()
+    {
+        return $this->fingerprint;
+    }
+
+    /**
+     * @param string $fingerprint
+     *
+     * @return self
+     */
+    public function setFingerprint($fingerprint)
+    {
+        $this->fingerprint = substr($fingerprint, 0, 120);
 
         return $this;
     }

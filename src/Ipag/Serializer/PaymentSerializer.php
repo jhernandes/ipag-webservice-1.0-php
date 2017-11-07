@@ -24,23 +24,42 @@ class PaymentSerializer
             'vencto' => urlencode($tx->getOrder()->getExpiry()),
             //Payment
             'metodo' => urlencode($tx->getPayment()->getMethod()),
+            'stelo_fingerprint' => urlencode($tx->getOrder()->getFingerprint()),
         );
 
         $instructions = $tx->getPayment()->getInstructions();
         foreach ($instructions as $key => $instruction) {
-            $message["instrucoes[{$key}]"] = $instruction;
+            $message["instrucoes[{$key}]"] = urlencode($instruction);
         }
 
         //Tem Parceiro?
         $parceiro = $tx->getUser()->getIdentification2();
         if (!empty($parceiro)) {
-            $message['identificacao2'] = $parceiro;
+            $message['identificacao2'] = urlencode($parceiro);
         }
 
         //SoftDescriptor?
         $softDescriptor = $tx->getPayment()->getSoftDescriptor();
         if (!empty($softDescriptor)) {
-            $message['softdescriptor'] = $softDescriptor;
+            $message['softdescriptor'] = urlencode($softDescriptor);
+        }
+
+        //Cart
+        $cart = $tx->getCart();
+        if (!empty($cart)) {
+            $products = $cart->getProducts();
+            $itemList = [];
+
+            $i = 1;
+            foreach ($products as $product) {
+                $itemList[$i++] = array(
+                    'descr' => $product->getName(),
+                    'valor' => $product->getUnitPrice(),
+                    'quant' => $product->getQuatity(),
+                    'id' => $product->getSku(),
+                );
+            }
+            $message['descricao_pedido'] = urlencode(json_encode($itemList));
         }
 
         //Card
