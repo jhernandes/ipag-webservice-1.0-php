@@ -55,7 +55,7 @@ class PaymentSerializer
                 $itemList[$i++] = array(
                     'descr' => $product->getName(),
                     'valor' => $product->getUnitPrice(),
-                    'quant' => $product->getQuatity(),
+                    'quant' => $product->getQuantity(),
                     'id' => $product->getSku(),
                 );
             }
