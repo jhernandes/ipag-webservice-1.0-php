@@ -88,6 +88,11 @@ class Response
     private $ano;
 
     /**
+     * @var string
+     */
+    private $idAssinatura;
+
+    /**
      * Get the value of Tid
      *
      * @return string
@@ -499,6 +504,26 @@ class Response
     public function setMes($mes)
     {
         $this->mes = $mes;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIdAssinatura()
+    {
+        return $this->idAssinatura;
+    }
+
+    /**
+     * @param string $idAssinatura
+     *
+     * @return self
+     */
+    public function setIdAssinatura($idAssinatura)
+    {
+        $this->idAssinatura = $idAssinatura;
 
         return $this;
     }

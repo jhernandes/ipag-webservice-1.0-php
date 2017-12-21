@@ -2,9 +2,10 @@
 
 class Subscription
 {
-    const INTERVAL_DAY   = 'day';
-    const INTERVAL_WEEK  = 'week';
+    const INTERVAL_DAY = 'day';
+    const INTERVAL_WEEK = 'week';
     const INTERVAL_MONTH = 'month';
+    const INTERVAL_YEAR = 'year';
 
     /**
      * @var int
@@ -51,7 +52,6 @@ class Subscription
      */
     private $trialAmount;
 
-
     /**
      * Subscription Constructor
      *
@@ -64,10 +64,10 @@ class Subscription
      */
     public function __construct($interval, $frequency, $start, $cycle = null)
     {
-        $this->setInterval((int)$interval);
-        $this->setFrequency((int)$frequency);
+        $this->setInterval((string) $interval);
+        $this->setFrequency((int) $frequency);
         $this->setStart($start);
-        is_null($cycle)?:$this->setCycle($cycle);
+        is_null($cycle) ?: $this->setCycle($cycle);
 
         return $this;
     }
@@ -195,7 +195,7 @@ class Subscription
             case Subscription::INTERVAL_WEEK:
             case Subscription::INTERVAL_MONTH:
             case Subscription::INTERVAL_YEAR:
-                 $this->interval = $interval;
+                $this->interval = $interval;
                 break;
             default:
                 throw new \UnexpectedValueException(
@@ -257,9 +257,9 @@ class Subscription
     public function setAmount($amount)
     {
         if (!is_double($amount)) {
-              throw new \UnexpectedValueException(
-                  'O Valor do Pedido deve ser do tipo double (ex: 1.00)'
-              );
+            throw new \UnexpectedValueException(
+                'O Valor do Pedido deve ser do tipo double (ex: 1.00)'
+            );
         }
         $this->amount = $amount;
 
@@ -275,7 +275,7 @@ class Subscription
      */
     public function setTrial($trial)
     {
-        $this->trial = (boolean)$trial;
+        $this->trial = (boolean) $trial;
 
         return $this;
     }
@@ -328,9 +328,9 @@ class Subscription
     public function setTrialAmount($trialAmount)
     {
         if (!is_double($trialAmount)) {
-              throw new \UnexpectedValueException(
-                  'O Valor do Pedido deve ser do tipo double (ex: 1.00)'
-              );
+            throw new \UnexpectedValueException(
+                'O Valor do Pedido deve ser do tipo double (ex: 1.00)'
+            );
         }
         $this->trialAmount = $trialAmount;
 

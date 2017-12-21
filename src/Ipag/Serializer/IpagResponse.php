@@ -1,22 +1,25 @@
 <?php namespace Ipag\Serializer;
 
-use Ipag\IpagException;
 use Ipag\Response;
+use Ipag\Services\XmlService;
 
 class IpagResponse
 {
+    /**
+     * Desserializa a resposta XML do iPag
+     * @param string $message
+     * @return Response
+     */
     public function unserialize($message)
     {
-        libxml_use_internal_errors(true);
-        $doc = simplexml_load_string($message, 'SimpleXMLElement', LIBXML_NOCDATA);
-
-        if ($doc === false) {
-            echo $message;
-            exit;
-            // throw new IpagException('Não foi possível concluir a operação.', '10000');
-        }
-
         $response = new Response();
+        $doc = XmlService::isValid($message);
+
+        if (!$doc) {
+            $response->setError('999');
+            $response->setErrorMessage('Não foi possível recuperar uma resposta do iPag');
+            return $response;
+        }
 
         !isset($doc->id_transacao) ?: $response->setTid((string) $doc->id_transacao);
         !isset($doc->valor) ?: $response->setAmount((string) $doc->valor);
@@ -35,6 +38,7 @@ class IpagResponse
         !isset($doc->last4) ?: $response->setLast4((string) $doc->last4);
         !isset($doc->mes) ?: $response->setMes((string) $doc->mes);
         !isset($doc->ano) ?: $response->setAno((string) $doc->ano);
+        !isset($doc->id_assinatura) ?: $response->setIdAssinatura((string) $doc->id_assinatura);
 
         //ERROR
         !isset($doc->code) ?: $response->setError((string) $doc->code);
