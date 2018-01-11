@@ -16,6 +16,7 @@ class UnserializeResponse
         $doc = XmlService::isValid($message);
 
         if (!$doc) {
+            $response = new \stdClass();
             $response->error = '999';
             $response->errorMessage = 'Não foi possível recuperar uma resposta do iPag';
             return $response;

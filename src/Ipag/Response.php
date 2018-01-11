@@ -93,6 +93,11 @@ class Response
     private $idAssinatura;
 
     /**
+     * @var Antifraude
+     */
+    private $antifraude;
+
+    /**
      * Get the value of Tid
      *
      * @return string
@@ -524,6 +529,30 @@ class Response
     public function setIdAssinatura($idAssinatura)
     {
         $this->idAssinatura = $idAssinatura;
+
+        return $this;
+    }
+
+    /**
+     * @return Antifraude
+     */
+    public function getAntifraude()
+    {
+        if (is_null($this->antifraude)) {
+            $this->antifraude = new Antifraude();
+        }
+
+        return $this->antifraude;
+    }
+
+    /**
+     * @param Antifraude $antifraude
+     *
+     * @return self
+     */
+    public function setAntifraude(Antifraude $antifraude)
+    {
+        $this->antifraude = $antifraude;
 
         return $this;
     }

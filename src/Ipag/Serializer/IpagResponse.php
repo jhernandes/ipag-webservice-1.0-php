@@ -44,6 +44,14 @@ class IpagResponse
         !isset($doc->code) ?: $response->setError((string) $doc->code);
         !isset($doc->message) ?: $response->setErrorMessage((string) $doc->message);
 
+        if (isset($doc->af_id)) {
+            $response->getAntifraude()
+                ->setId((string) $doc->af_id)
+                ->setStatus((string) $doc->af_status)
+                ->setScore((string) $doc->score)
+                ->setMessage((string) $doc->af_message);
+        }
+
         return $response;
     }
 }

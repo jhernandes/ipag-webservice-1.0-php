@@ -12,19 +12,20 @@ class PaymentSerializer
     {
         $message = array(
             //User
-            'identificacao' => urlencode($tx->getUser()->getIdentification()),
+            'identificacao'     => urlencode($tx->getUser()->getIdentification()),
             //Order
-            'pedido' => urlencode($tx->getOrder()->getOrderId()),
-            'operacao' => urlencode($tx->getOrder()->getOperation()),
-            'url_retorno' => urlencode($tx->getOrder()->getCallbackUrl()),
-            'retorno_tipo' => urlencode('xml'),
-            'boleto_tipo' => urlencode('xml'),
-            'valor' => urlencode($tx->getOrder()->getAmount()),
-            'parcelas' => urlencode($tx->getOrder()->getInstallments()),
-            'vencto' => urlencode($tx->getOrder()->getExpiry()),
+            'pedido'            => urlencode($tx->getOrder()->getOrderId()),
+            'operacao'          => urlencode($tx->getOrder()->getOperation()),
+            'url_retorno'       => urlencode($tx->getOrder()->getCallbackUrl()),
+            'retorno_tipo'      => urlencode('xml'),
+            'boleto_tipo'       => urlencode('xml'),
+            'valor'             => urlencode($tx->getOrder()->getAmount()),
+            'parcelas'          => urlencode($tx->getOrder()->getInstallments()),
+            'vencto'            => urlencode($tx->getOrder()->getExpiry()),
             //Payment
-            'metodo' => urlencode($tx->getPayment()->getMethod()),
+            'metodo'            => urlencode($tx->getPayment()->getMethod()),
             'stelo_fingerprint' => urlencode($tx->getOrder()->getFingerprint()),
+            'antifraude'        => $tx->getOrder()->isAntifraude(),
         );
 
         $instructions = $tx->getPayment()->getInstructions();
@@ -56,7 +57,7 @@ class PaymentSerializer
                     'descr' => $product->getName(),
                     'valor' => $product->getUnitPrice(),
                     'quant' => $product->getQuantity(),
-                    'id' => $product->getSku(),
+                    'id'    => $product->getSku(),
                 );
             }
             $message['descricao_pedido'] = urlencode(json_encode($itemList));

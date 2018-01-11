@@ -53,6 +53,11 @@ class Order
     private $fingerprint;
 
     /**
+     * @var bool
+     */
+    private $antifraude;
+
+    /**
      * @param string $operation
      * @param string $callbackUrl
      * @param string $orderId
@@ -315,6 +320,26 @@ class Order
     public function setFingerprint($fingerprint)
     {
         $this->fingerprint = substr($fingerprint, 0, 120);
+
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAntifraude()
+    {
+        return $this->antifraude;
+    }
+
+    /**
+     * @param bool $antifraude
+     *
+     * @return self
+     */
+    public function setAntifraude($antifraude)
+    {
+        $this->antifraude = $antifraude;
 
         return $this;
     }
