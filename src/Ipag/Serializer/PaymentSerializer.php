@@ -22,6 +22,7 @@ class PaymentSerializer
             'valor'             => urlencode($tx->getOrder()->getAmount()),
             'parcelas'          => urlencode($tx->getOrder()->getInstallments()),
             'vencto'            => urlencode($tx->getOrder()->getExpiry()),
+            'ip'                => urlencode($tx->getOrder()->getIp()),
             //Payment
             'metodo'            => urlencode($tx->getPayment()->getMethod()),
             'stelo_fingerprint' => urlencode($tx->getOrder()->getFingerprint()),

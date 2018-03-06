@@ -58,6 +58,11 @@ class Order
     private $antifraude;
 
     /**
+     * @var string
+     */
+    private $ip;
+
+    /**
      * @param string $operation
      * @param string $callbackUrl
      * @param string $orderId
@@ -340,6 +345,28 @@ class Order
     public function setAntifraude($antifraude)
     {
         $this->antifraude = $antifraude;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIp()
+    {
+        return $this->ip;
+    }
+
+    /**
+     * @param string $ip
+     *
+     * @return self
+     */
+    public function setIp($ip)
+    {
+        if (filter_var(trim($ip), FILTER_VALIDATE_IP)) {
+            $this->ip = trim($ip);
+        }
 
         return $this;
     }
