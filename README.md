@@ -1,3 +1,6 @@
+#Este SDK foi descontinuado! Por favor acesse: [iPag SDK PHP](https://github.com/jhernandes/ipag-sdk-php)
+
+
 # IPAG SDK PHP
 
 Integração em PHP com o Webservice iPag 1.0
